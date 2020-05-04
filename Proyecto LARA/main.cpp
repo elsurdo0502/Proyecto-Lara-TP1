@@ -20,18 +20,20 @@ int main()
 {
 
     int opc;
-    setColor(GREEN);
     while(true)
     {
         cls();
-        menu();
-        cout << " Elija una Opcion: ";
+        menu_Principal();
+        cout << " INGRESE UNA OPCION: ";
         cin >> opc;
 
         switch(opc)
         {
         case 1:
-            nuevo_plato();
+            cls();
+            submenu_Platos();
+
+            //nuevo_plato();
             break;
         case 2:
             //listar_productos();
@@ -50,9 +52,13 @@ int main()
         case 0:
             return 0;
             break;
+
+        default:
+            cout << "POR FAVOR INGRESE UNA OPCION CORRECTA." <<endl;
+            break;
         }
         cin.ignore();
         anykey();
     }
-    return 0;
+    return false;
 }

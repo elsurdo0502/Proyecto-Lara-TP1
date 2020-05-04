@@ -1,6 +1,44 @@
 #ifndef FUNCIONES_H_INCLUDED
 #define FUNCIONES_H_INCLUDED
 
+void submenu_Platos()
+{
+    int opc;
+    while(true)
+    {
+        cls();
+        menu_Platos();
+        cout << " INGRESE UNA OPCION: ";
+        cin >> opc;
+
+        switch(opc)
+        {
+        case 1:
+            cls();
+            nuevo_plato();
+            break;
+        case 2:
+            //modificar_plato();
+            break;
+        case 3:
+            //editar_producto();
+
+            break;
+        case 4:
+            //listar_producto_x_id();
+            break;
+        case 6:
+            //listar_productos_memdin();
+            break;
+
+        case 0:
+            return;
+            break;
+        }
+        cin.ignore();
+        anykey();
+    }
+}
 
 void nuevo_plato()
 {
@@ -126,17 +164,18 @@ bool cargar_plato(Plato *reg)
     return true;
 }
 
-bool guardar_plato(Plato reg){
+bool guardar_plato(Plato reg)
+{
     bool ok;
     FILE *p;
     p = fopen(ARCHIVO_PLATOS, "ab");
-    if (p == NULL){
+    if (p == NULL)
+    {
         return false;
     }
     ok = fwrite(&reg, sizeof(Plato), 1, p);
     fclose(p);
     return ok;
 }
-
 
 #endif // FUNCIONES_H_INCLUDED
