@@ -8,6 +8,7 @@ const char *ARCHIVO_PEDIDOS="Datos\Pedidos.dat";
 
 ///PROTOTIPOS DE FUNCIONES
 void menu();
+void submenu_Platos();
 void nuevo_plato();
 bool cargar_plato(Plato *);
 int buscar_plato(int);

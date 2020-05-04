@@ -12,6 +12,7 @@ using namespace rlutil;
 
 #include "Funciones/Tipos.h"
 #include "Funciones/Prototipos.h"
+#include "Funciones/Menus.h"
 #include "Funciones/Funciones.h"
 
 
@@ -19,7 +20,7 @@ int main()
 {
 
     int opc;
-    setColor(WHITE);
+    setColor(GREEN);
     while(true)
     {
         cls();
