@@ -1,7 +1,7 @@
 #ifndef TIPOS_H_INCLUDED
 #define TIPOS_H_INCLUDED
 
-struct Platos{
+struct Plato{
     int id;
     char nombre[50];
     float costoPrep;

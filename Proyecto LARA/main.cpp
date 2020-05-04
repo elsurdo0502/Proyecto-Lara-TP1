@@ -4,8 +4,7 @@
 #include <cstring>
 using namespace std;
 
-///CONSTANTES ARCHIVOS
-const char *ARCHIVO_PLATOS="Datos\Platos.dat";
+
 
 ///LIBRERIAS
 #include "Funciones/rlutil.h"
@@ -18,7 +17,41 @@ using namespace rlutil;
 
 int main()
 {
-    menu();
 
+    int opc;
+    setColor(WHITE);
+    while(true)
+    {
+        cls();
+        menu();
+        cout << " Elija una Opcion: ";
+        cin >> opc;
+
+        switch(opc)
+        {
+        case 1:
+            nuevo_plato();
+            break;
+        case 2:
+            //listar_productos();
+            break;
+        case 3:
+            //editar_producto();
+
+            break;
+        case 4:
+            //listar_producto_x_id();
+            break;
+        case 6:
+            //listar_productos_memdin();
+            break;
+
+        case 0:
+            return 0;
+            break;
+        }
+        cin.ignore();
+        anykey();
+    }
     return 0;
 }
