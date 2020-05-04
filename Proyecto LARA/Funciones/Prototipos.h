@@ -20,9 +20,10 @@ bool sobrescribir_plato(Plato, int);
 void listar_plato(Plato);
 void titulo_plato();
 void listar_plato_x_id();
-void listar_plato_x_restaurante();
+void baja_plato();
+void listar_platos();
+int cantidad_platos();
+void listar_platos_x_restaurante();
 int buscar_restaurante(int);
-
-
 
 #endif // PROTOTIPOS_H_INCLUDED

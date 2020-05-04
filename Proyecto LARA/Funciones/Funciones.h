@@ -22,16 +22,23 @@ void submenu_Platos()
             modificar_plato();
             break;
         case 3:
+            cls();
             listar_plato_x_id();
 
             break;
         case 4:
-            listar_plato_x_restaurante();
+            cls();
+            listar_platos_x_restaurante();
+
+            break;
+        case 5:
+            cls();
+            listar_platos();
             break;
         case 6:
-            //listar_productos_memdin();
+            cls();
+            baja_plato();
             break;
-
         case 0:
             return;
             break;
@@ -85,37 +92,12 @@ int buscar_plato(int buscar)
     return -1;
 }
 
-int buscar_restaurante(int buscar)
-{
-    Plato reg;
-    int i=0;
-    FILE *p;
-    p = fopen(ARCHIVO_PLATOS, "rb");
-    if (p == NULL)
-    {
-        cout<< "NO SE PUDO ABRIR EL ARCHIVO." << endl;
-        return -2;
-    }
-    while (fread(&reg, sizeof(Plato), 1, p))
-    {
-        if (reg.idRestaurante == buscar)
-        {
-            fclose(p);
-            return i;
-        }
-        i++;
-    }
-    fclose(p);
-    return -1;
-}
-
-
 bool cargar_plato(Plato *reg)
 {
     int i;
     cout << "INGRESE ID DEL PLATO A CARGAR: ";
     cin >> reg->id;
-    if(reg->id<0)
+    if(reg->id<=0)
     {
         cout << "EL ID DEL PLATO DEBE SER MAYOR A 0." <<endl;
         return false;
@@ -137,7 +119,7 @@ bool cargar_plato(Plato *reg)
     }
     cout << "INGRESE EL COSTO DE PREPARACION: $";
     cin >> reg->costoPrep;
-    if (reg->costoPrep < 0)
+    if (reg->costoPrep <= 0)
     {
         cout << "EL COSTO DE PREPARACION NO PUEDE SER UN VALOR NEGATIVO." <<endl;
         return false;
@@ -145,7 +127,7 @@ bool cargar_plato(Plato *reg)
     cout << "INGRESE EL VALOR DE VENTA: " ;
     cin >> reg->importe;
 
-    if(reg->importe < 0)
+    if(reg->importe <= 0)
     {
         cout << "EL VALOR NO PUEDE SER NEGATIVO." <<endl;
         return false;
@@ -159,14 +141,14 @@ bool cargar_plato(Plato *reg)
     cout << "INGRESE EL TIEMPO DE PREPARACION: " ;
     cin >> reg->tiempoPrep;
 
-    if(reg->tiempoPrep < 0)
+    if(reg->tiempoPrep <= 0)
     {
         cout << "EL TIEMPO DE PREPARACION DEBE SER MAYOR A 0." <<endl;
         return false;
     }
     cout << "INGRESE EL ID RESTAURANTE: ";
     cin >> reg->idRestaurante;
-    if(reg->idRestaurante <0)
+    if(reg->idRestaurante <=0)
     {
         cout << "EL ID DEL RESTAURANTE DEBE SER MAYOR A 0." <<endl;
         return false;
@@ -180,7 +162,7 @@ bool cargar_plato(Plato *reg)
     }
     cout << "INGRESE EL ID CATEGORIA: ";
     cin >> reg->idCategoria;
-    if(reg->idCategoria<0)
+    if(reg->idCategoria<=0)
     {
         cout << "LA CATEGORIA DEBE SER MAYOR A 0." <<endl;
         return false;
@@ -261,7 +243,6 @@ Plato leer_plato(int pos)
     fclose(p);
     return reg;
 }
-
 void listar_plato(Plato reg)
 {
     cout << "ID                    : " << reg.id << endl;
@@ -274,7 +255,6 @@ void listar_plato(Plato reg)
     cout << "ID CATEGORIA          : " << reg.idCategoria << endl;
 
 }
-
 
 bool sobrescribir_plato(Plato reg, int pos)
 {
@@ -307,6 +287,137 @@ void listar_plato_x_id()
     else
     {
         cout << "NO EXISTE EL ID BUSCADO.";
+    }
+}
+
+void baja_plato()
+{
+    int id_buscado, pos;
+    titulo_plato();
+    cout << endl;
+    cout << "INGRESE EL ID A ELIMINAR: ";
+    cin >> id_buscado;
+    pos = buscar_plato(id_buscado);
+    if (pos >= 0)
+    {
+        Plato reg = leer_plato(pos);
+        cout << endl;
+        listar_plato(reg);
+        char acepta;
+        cout << "¿ESTA SEGURO QUE DESEA ELIMINAR EL PLATO?" << endl;
+        cout << "S/N?" << endl;
+        cout << "INGRESE UNA OPCION: ";
+        cin>>acepta;
+        switch(acepta)
+        {
+        case 'S':
+        case 's':
+        {
+            reg.estado = false;
+
+            if (sobrescribir_plato(reg, pos))
+            {
+                cout << "PLATO MODIFICADO.";
+            }
+            else
+            {
+                cout << "NO SE PUDO MODIFICAR EL PLATO.";
+            }
+        }
+        break;
+        case'N':
+            case'n':
+                {
+                    cout << "PLATO NO ELIMINADO.";
+                    return;
+                }
+
+        }
+    }
+        else
+        {
+            cout << "EL PLATO QUE ESTA BUSCANDO NO ESTA CARGADO.";
+        }
+
+}
+int cantidad_platos()
+{
+    int bytes, cantReg;
+    FILE *p;
+    p = fopen(ARCHIVO_PLATOS, "rb");
+    if (p == NULL)
+    {
+        return 0;
+    }
+    fseek(p, 0, 2);
+    bytes = ftell(p);
+    cantReg = bytes / sizeof(Plato);
+    fclose(p);
+    return cantReg;
+}
+void listar_platos()
+{
+    cls();
+    Plato reg;
+    int cant = cantidad_platos(), i;
+    for(i=0; i<cant; i++)
+    {
+        cout << "#" << i+1 << endl;
+        reg = leer_plato(i);
+        listar_plato(reg);
+        cout << endl;
+    }
+}
+int buscar_restaurante(int buscar)
+{
+    Plato reg;
+    int i=0;
+    FILE *p;
+    p = fopen(ARCHIVO_PLATOS, "rb");
+    if (p == NULL)
+    {
+        cout<< "NO SE PUDO ABRIR EL ARCHIVO." << endl;
+        return -2;
+    }
+    while (fread(&reg, sizeof(Plato), 1, p))
+    {
+        if (reg.idRestaurante == buscar)
+        {
+            fclose(p);
+            return i;
+        }
+        i++;
+    }
+    fclose(p);
+    return -1;
+}
+void listar_platos_x_restaurante()
+{
+    cls();
+    int id_buscado, pos;
+    Plato reg;
+    cout << "ID DEL RESTAURANTE A BUSCAR: ";
+    cin >> id_buscado;
+    pos = buscar_restaurante(id_buscado);
+    if (pos >= 0)
+    {
+    int cant = cantidad_platos(), i;
+    for(i=0; i<cant; i++)
+    {
+        reg = leer_plato(i);
+        if(id_buscado==reg.idRestaurante)
+        {
+        cout << "#" << i+1 << endl;
+        listar_plato(reg);
+        cout << endl;
+        }
+
+    }
+
+    }
+    else
+    {
+        cout << "No existe el id buscado.";
     }
 }
 
