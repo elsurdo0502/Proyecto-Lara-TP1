@@ -33,7 +33,6 @@ int main()
             cls();
             submenu_Platos();
 
-            //nuevo_plato();
             break;
         case 2:
             //listar_productos();

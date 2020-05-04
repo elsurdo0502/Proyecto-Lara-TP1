@@ -27,8 +27,8 @@ void menu_Platos()
 {
     setColor(YELLOW);
     cout << "********************************************" << endl;
-    cout << "*\tPEDIDOS LARA                       *" << endl;
-    cout << "*\tMENU PLATOS                        *" << endl;
+    cout << "*\t\tPEDIDOS LARA               *" << endl;
+    cout << "*\t\tMENU PLATOS                *" << endl;
     cout << "********************************************" << endl;
     cout << "* 1) NUEVO PLATO                           *" << endl;
     cout << "*                                          *" << endl;
@@ -46,5 +46,15 @@ void menu_Platos()
     cout << "********************************************" << endl;
 
 }
+
+void titulo_plato()
+{
+    cout << "********************************************" << endl;
+    cout << "*\t\tPEDIDOS LARA               *" << endl;
+    cout << "*\t\tMENU PLATOS                *" << endl;
+    cout << "********************************************" << endl;
+}
+
+
 
 #endif // MENUS_H_INCLUDED
