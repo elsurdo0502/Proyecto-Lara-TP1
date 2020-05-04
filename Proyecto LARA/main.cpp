@@ -5,7 +5,7 @@
 using namespace std;
 
 ///CONSTANTES ARCHIVOS
-const char *ARCHIVO_PLATOS="Platos.dat";
+const char *ARCHIVO_PLATOS="Datos\Platos.dat";
 
 ///LIBRERIAS
 #include "Funciones/rlutil.h"
