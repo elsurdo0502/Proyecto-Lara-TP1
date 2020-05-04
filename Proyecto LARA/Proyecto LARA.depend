@@ -1,0 +1,31 @@
+# depslib dependency file v1.0
+1588546114 source:c:\facultad\utn - frgp\2020\laboratorio ii\proyecto lara\proyecto lara\main.cpp
+	<iostream>
+	<cstdlib>
+	<cstdio>
+	<cstring>
+	"Funciones/rlutil.h"
+	"Funciones/Tipos.h"
+	"Funciones/Prototipos.h"
+	"Funciones/Funciones.h"
+
+1588544600 c:\facultad\utn - frgp\2020\laboratorio ii\proyecto lara\proyecto lara\funciones\rlutil.h
+	<iostream>
+	<string>
+	<cstdio>
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+	<termios.h>
+	<unistd.h>
+	<sys/ioctl.h>
+	<sys/types.h>
+	<sys/time.h>
+
+1588545830 c:\facultad\utn - frgp\2020\laboratorio ii\proyecto lara\proyecto lara\funciones\tipos.h
+
+1588546107 c:\facultad\utn - frgp\2020\laboratorio ii\proyecto lara\proyecto lara\funciones\prototipos.h
+
+1588546707 c:\facultad\utn - frgp\2020\laboratorio ii\proyecto lara\proyecto lara\funciones\funciones.h
+
